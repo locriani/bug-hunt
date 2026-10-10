@@ -1,0 +1,20 @@
+{
+  "name": "bug-hunt",
+  "description": "Standalone home of the bug-hunt Claude Code plugin, extracted from locriani/ai-additions.",
+  "owner": {
+    "name": "Zach Gardner",
+    "email": "locriani@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "bug-hunt",
+      "description": "Headless, repo-agnostic bug hunt: finders read the hottest files from five angles, provers write a repro that must fail against the current code, and a verifier must turn it green with a fix before a bug is reported. Report only; `bug-hunt run` wraps claude -p in a throwaway worktree with a spend cap and exits 1 on proven bugs.",
+      "version": "0.1.1",
+      "source": "./",
+      "author": {
+        "name": "Zach Gardner",
+        "email": "locriani@gmail.com"
+      }
+    }
+  ]
+}
