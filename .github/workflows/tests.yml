@@ -1,0 +1,23 @@
+name: tests
+
+# Push only. A fork cannot push a branch here, so this workflow never runs a fork's code.
+on:
+  push:
+
+# The suite only reads the repository.
+permissions:
+  contents: read
+
+jobs:
+  unittest:
+    runs-on: ubuntu-latest
+    # The full image, not slim: the suite drives real git (throwaway worktrees).
+    container: python:3.14
+    steps:
+      # v4.4.0, pinned to its commit: a tag can be moved.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          # Nothing after the checkout uses the token, so it is not left in .git/config for the suite to read.
+          persist-credentials: false
+      # The tests fake the claude CLI, so no extra dependencies: stdlib and git are all the suite needs.
+      - run: python3 -m unittest discover -s tests
